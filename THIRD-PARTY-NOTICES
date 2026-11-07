@@ -1,0 +1,39 @@
+N2 Hecaton adapts the tool registry, routing and execution architecture of N2 Daebung.
+The project source is distributed under the MIT license in LICENSE.
+
+Runtime dependencies retain their upstream license terms.
+
+n2-gumiho 1.0.1
+https://github.com/choihyunsus/n2-gumiho
+MIT. Its dependency graph includes N2R and Personas.
+
+n2-mimir 3.0.3
+https://github.com/choihyunsus/n2-mimir
+The published non-commercial/commercial terms are reproduced in LICENSE-N2-MIMIR.
+
+n2-clotho 4.1.0 (direct) and 4.0.1 (through N2R)
+https://github.com/choihyunsus/n2-clotho
+The published non-commercial/commercial terms are reproduced in LICENSE-N2-CLOTHO.
+The referenced Apache text is reproduced in LICENSE-APACHE.
+
+@modelcontextprotocol/sdk
+https://github.com/modelcontextprotocol/typescript-sdk
+MIT
+
+better-sqlite3
+https://github.com/WiseLibs/better-sqlite3
+MIT
+
+ajv 8.20.0
+https://github.com/ajv-validator/ajv
+MIT
+
+re2js 2.9.1
+https://github.com/le0pard/re2js
+MIT
+
+zod
+https://github.com/colinhacks/zod
+MIT
+
+Exact dependency resolutions are recorded in package-lock.json in the source repository.

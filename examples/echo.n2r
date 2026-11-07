@@ -1,0 +1,12 @@
+@meta {
+  name: "echo_checked"
+  handler: "native:echo"
+  enforce: strict
+  read_only: true
+  description: "Return a nonempty text value"
+  triggers: ["메아리", "checked echo"]
+}
+@contract Required {
+  scope: request
+  precondition { params.text != "" => "text is required" }
+}
