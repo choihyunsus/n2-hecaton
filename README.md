@@ -13,7 +13,7 @@ This standalone release carries Daebung's catalog, taxonomy, routing, guarded ex
 Requires Node.js 22 or later. SQLite uses `better-sqlite3`, or a compatible optional Mimir Rust binding. Installation can require a native compiler when the platform has no matching prebuilt SQLite binary.
 
 ```sh
-npm install https://github.com/choihyunsus/n2-hecaton/releases/download/v1.0.0/n2-hecaton-1.0.0.tgz
+npm install https://github.com/choihyunsus/n2-hecaton/releases/download/v1.0.1/n2-hecaton-1.0.1.tgz
 ```
 
 GitHub Releases supplies this package and its pinned N2 dependencies. The lockfile records exact dependency resolutions.
@@ -171,6 +171,8 @@ The stdio MCP server exposes 16 scoped tools for listing, routing, execution, in
 | Remote discovery | 15 seconds, 32 pages, 128 tools, 4 MiB |
 | MCP frame / traffic | 1 MiB / 4 MiB and 256 messages per second |
 | MCP read response | 60,000 bytes, full JSON available in chunks |
+
+Version 1.0.1 uses asynchronous writes for CLI and default MCP stdout. Cancellation and five-second output deadlines remain active when a Windows pipe consumer stalls. After an output write expires, the CLI closes its owned engine and MCP connections before terminating its own process. Embedded transports report the I/O failure to their host. Node documents the platform-specific behavior of process streams. [Node process I/O](https://nodejs.org/api/process.html#a-note-on-process-io)
 
 ```sh
 npm ci

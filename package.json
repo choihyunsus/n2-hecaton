@@ -1,6 +1,6 @@
 {
   "name": "n2-hecaton",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Scoped tool registry, routed execution and durable N2R tool definitions with shared Soul storage.",
   "main": "dist/library.js",
   "types": "dist/library.d.ts",

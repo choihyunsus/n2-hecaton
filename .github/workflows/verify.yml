@@ -57,7 +57,7 @@ jobs:
           name: hecaton-package
           path: release
       - run: node -e "const fs=require('node:fs');fs.mkdirSync('consumer');fs.writeFileSync('consumer/package.json',JSON.stringify({name:'hecaton-consumer',version:'1.0.0',private:true}));"
-      - run: npm install --no-fund ../release/n2-hecaton-1.0.0.tgz typescript@5.9.3 @types/node@22.20.5
+      - run: npm install --no-fund ../release/n2-hecaton-1.0.1.tgz typescript@5.9.3 @types/node@22.20.5
         working-directory: consumer
       - run: node -e "require('node:fs').cpSync('tests','consumer/node_modules/n2-hecaton/tests',{recursive:true});"
       - run: node --test --test-timeout=60000 "tests/*.test.cjs"

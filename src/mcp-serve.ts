@@ -13,18 +13,24 @@ export async function serve(engine: Hecaton): Promise<void> {
     process.removeListener('SIGINT', stop);
     process.removeListener('SIGTERM', stop);
   };
-  server.server.onclose = () => {
-    removeListeners();
-    void engine.close().catch(reportFailure);
-  };
+  const stopped = new Promise<void>((resolve) => {
+    server.server.onclose = () => {
+      removeListeners();
+      void engine.close().catch(reportFailure).finally(resolve);
+    };
+  });
   server.server.onerror = reportFailure;
   process.once('SIGINT', stop);
   process.once('SIGTERM', stop);
   try {
     await server.connect(new ServerStdioTransport());
-  } catch (error) {
+    await stopped;
+  } finally {
     removeListeners();
-    await engine.close();
-    throw error;
+    try {
+      await server.close();
+    } finally {
+      await engine.close();
+    }
   }
 }

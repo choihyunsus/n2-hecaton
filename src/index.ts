@@ -5,15 +5,16 @@ import { inspectHecaton, type InspectionOptions } from './inspect';
 import { executeCli } from './cli-execute';
 import { parseCli, engineOptions, scopeOptions, numberOption, HELP } from './cli-options';
 import { ReconciliationRequired } from './call-types';
+import { print, writeText, finishOutput } from './output';
 
 export async function main(args: string[]): Promise<void> {
   const { command, values } = parseCli(args);
   if (command === 'help' || command === 'version') {
-    process.stdout.write(command === 'help' ? HELP : '1.0.0\n');
+    await writeText(command === 'help' ? HELP : '1.0.1\n');
     return;
   }
   if (['status', 'history', 'definitions'].includes(command)) {
-    print(
+    await print(
       inspectHecaton({
         ...scopeOptions(values),
         view: command as InspectionOptions['view'],
@@ -36,7 +37,7 @@ export async function main(args: string[]): Promise<void> {
   process.once('SIGTERM', stop);
   try {
     const result = await executeCli(engine, command, values, controller.signal);
-    print(result);
+    await print(result);
     const receipt = result as {
       result?: { success: boolean };
       execution?: { result: { success: boolean } };
@@ -49,9 +50,6 @@ export async function main(args: string[]): Promise<void> {
     await engine.close();
   }
 }
-function print(value: unknown): void {
-  process.stdout.write(JSON.stringify(value) + '\n');
-}
 export function reportFailure(error: unknown): void {
   const message = error instanceof Error ? error.message : 'Hecaton operation failed';
   process.stderr.write(
@@ -63,4 +61,9 @@ export function reportFailure(error: unknown): void {
   );
   process.exitCode = 1;
 }
-if (require.main === module) void main(process.argv.slice(2)).catch(reportFailure);
+if (require.main === module) {
+  // Write callbacks and the bounded MCP transport own stream failures and cancellation.
+  process.stdout.on('error', () => {});
+  process.stderr.on('error', () => {});
+  void main(process.argv.slice(2)).catch(reportFailure).finally(finishOutput);
+}

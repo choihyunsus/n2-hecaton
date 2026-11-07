@@ -21,7 +21,7 @@ const request = {
 };
 export function createMcpServer(engine: Hecaton): McpServer {
   const server = new McpServer(
-    { name: 'n2-hecaton', version: '1.0.0' },
+    { name: 'n2-hecaton', version: '1.0.1' },
     { maxToolInputElements: 8192 },
   );
   registerList(server, engine);

@@ -4,6 +4,7 @@ import type { Transport } from '@modelcontextprotocol/sdk/shared/transport.js';
 import type { JSONRPCMessage } from '@modelcontextprotocol/sdk/types.js';
 import { JsonRpcFrames } from './mcp-frames';
 import { MAX_MCP_FRAME } from './mcp-budget';
+import { outputStream } from './output';
 
 export class ServerStdioTransport implements Transport {
   onclose?: () => void;
@@ -15,7 +16,7 @@ export class ServerStdioTransport implements Transport {
   private pending = 0;
   constructor(
     private readonly input: Readable = process.stdin,
-    private readonly output: Writable = process.stdout,
+    private readonly output: Writable = outputStream,
   ) {}
   async start(): Promise<void> {
     if (this.started || this.closed)

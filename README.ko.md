@@ -13,7 +13,7 @@ AI 호스트를 위한 도구 검색·라우팅·실행 기록 모듈입니다.
 Node.js 22 이상이 필요합니다. SQLite는 `better-sqlite3` 또는 호환되는 Mimir Rust 바인딩을 사용합니다. 환경에 맞는 SQLite 사전 빌드가 없으면 네이티브 빌드 도구가 필요할 수 있습니다.
 
 ```sh
-npm install https://github.com/choihyunsus/n2-hecaton/releases/download/v1.0.0/n2-hecaton-1.0.0.tgz
+npm install https://github.com/choihyunsus/n2-hecaton/releases/download/v1.0.1/n2-hecaton-1.0.1.tgz
 ```
 
 이 패키지와 버전을 고정한 N2 의존성은 GitHub Releases로 제공합니다. 정확한 의존성 구성은 소스 저장소의 잠금 파일에 기록되어 있습니다.
@@ -148,6 +148,8 @@ stdio MCP 서버는 조회·라우팅·실행·정의 관리·원격 탐색과 �
 | 원격 탐색 | 15초, 32페이지, 128개 도구, 4 MiB |
 | MCP 프레임·트래픽 | 1 MiB, 초당 4 MiB·256개 메시지 |
 | MCP 조회 응답 | 60,000바이트, 전체 JSON은 분할 조회 |
+
+1.0.1은 CLI와 기본 MCP 표준 출력에 비동기 쓰기를 적용합니다. Windows에서 출력을 받는 쪽이 멈춰도 취소와 5초 출력 제한을 처리합니다. 출력 시간이 초과되면 CLI가 소유한 엔진과 MCP 연결을 정리한 뒤 자신의 프로세스를 종료합니다. 애플리케이션에 내장한 전송기는 호스트에 I/O 실패를 전달합니다. 운영체제별 프로세스 스트림 동작은 Node 문서에서 확인할 수 있습니다. [Node 프로세스 I/O](https://nodejs.org/api/process.html#a-note-on-process-io)
 
 ```sh
 npm ci
