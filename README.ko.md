@@ -6,7 +6,20 @@
 
 [English](README.md)
 
+<p align="center">
+  <img src="https://github.com/choihyunsus/n2-hecaton/raw/refs/heads/main/docs/images/comic.png" alt="사용할 도구를 등록하고 → 요청 내용을 검사해 → 도구를 실행하고 → 실제 실행 결과를 기록합니다." width="640">
+</p>
+
+사용할 도구를 등록하고 → 요청 내용을 검사해 → 도구를 실행하고 → 실제 실행 결과를 기록합니다.
+
+기능을 이야기로 표현한 만화입니다. 실제 앱 화면은 아닙니다.
+
+<details>
+<summary>동작 흐름 펼쳐 보기</summary>
+
 ![도구 등록 → 입력과 권한 확인 → 실행 결과 기록](https://github.com/choihyunsus/n2-hecaton/raw/refs/heads/main/docs/images/overview.ko.svg)
+
+</details>
 
 ## 이런 때 사용하세요
 
